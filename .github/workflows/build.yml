@@ -1,27 +1,27 @@
-name: Build
-on:
+名字: 建筑
+在:
   workflow_dispatch:
-      inputs:
+输入:
         package_name:
-          description: "Package name of the game:"
-          required: true
+描述: "com.garena.game.codm"
+所需: 真正的
 
-jobs:
-  build:
+工作:
+建筑:
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-java@v3
-      with:
-        distribution: temurin
+步骤:
+    - 用途: actions/checkout@v3
+    - 用途: actions/setup-java@v3
+与:
+分布: 铁木林
         java-version: 11
-        cache: gradle
-    - run: |
-        chmod +x ./gradlew
-        sed -i 's/moduleDescription = "/moduleDescription = "(${{ github.event.inputs.package_name }}) /g' module.gradle
-        sed -i "s/com.game.packagename/${{ github.event.inputs.package_name }}/g" module/src/main/cpp/game.h
-        ./gradlew :module:assembleRelease
-    - uses: actions/upload-artifact@v3
-      with:
-        name: zygisk-il2cppdumper
-        path: out/magisk_module_release/
+贮存物: gradle
+    - 跑: |
+chmod +x ./gradlew
+sed -i 's/moduleDescription = "/moduleDescription = "(${{ github.event.inputs.package_name }}) /g' module.gradle
+sed -i "s/com.game.packagename/${{ github.event.inputs.package_name }}/g" module/src/main/cpp/game.h
+./gradlew：模块：汇编释放
+    - 用途: actions/upload-artifact@v3
+与:
+名字: zygisk-il2cppdumper
+路径: out/magisk_module_release/
